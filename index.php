@@ -26,10 +26,10 @@
 
 <body class="">
 <!-- Side Bar -->
- <div class=" fixed top-0 left-0 bg-[#f6f6f9] w-[230px] h-[100%] z-50 overflow-hidden sidebar ">
+ <div class=" fixed top-0 left-0  w-[230px] h-[100%] z-50 overflow-hidden sidebar ">
     <a href="" class="logo text-xl font-bold h-[56px] flex items-center text-[#1976D2] z-30 pb-[20px] box-content">
-        <i class=" mt-4 max-w-[100px] flex justify-center"><img src="/image/logo_tonobil-removebg-preview.png" alt=""></i>
-        <div class="logoname ml-2"><span class=" text-[#363949]">Loca</span>Auto</div>
+        <i class=" mt-4 text-xxl max-w-[60px] flex justify-center "><i class="fa-solid fa-car-side"></i></i> 
+        <div class="logoname ml-2"><span>Loca</span>Auto</div>
     </a>
     <ul class="side-menu w-full mt-12">
             <li class="active h-12 bg-transparent ml-2.5 rounded-l-full p-1"><a href=""><i class='bx bxs-dashboard'></i>Dashboard</a></li>
@@ -48,7 +48,7 @@
  </div>
 <!-- end sidebar -->
 <!-- Content -->
-<div class="content relative transition-all duration-300 ease-in-out" style="width: calc(100% - 230px); left: 230px;">
+<div class="content ">
     <!-- Navbar -->
     <nav class="flex items-center gap-6 h-14 bg-[#f6f6f9] sticky top-0 left-0 z-50 px-6">
             <i class='bx bx-menu'></i>
@@ -59,7 +59,7 @@
                 </div>
             </form>
             <input type="checkbox" id="theme-toggle" hidden>
-            <label for="theme-toggle" class="theme-toggle"></label>
+            <label for="theme-toggle" class="theme-toggle block min-w-[50px] h-[25px] bg-grey cursor-pointer relative rounded-full"></label>
             <a href="#" class="notif text-[20px] relative">
                 <i class='bx bx-bell'></i>
                 <span class="count absolute top-[-6px] right-[-6px] w-[20px] h-[20px] bg-[#D32F2F] text-[#f6f6f6] border-2 border-[#f6f6f9] font-semibold text-[12px] flex items-center justify-center rounded-full ">12</span>
@@ -68,8 +68,59 @@
                 <img class="w-[36px] h-[36px] object-cover rounded-full" src="/image/1054-1728555216-removebg-preview.png">
             </a>
     </nav>
+<!-- end nav -->
+ <main class="w-full p-[36px_24px] max-h-[calc(100vh_-_56px)]">
+ <div  class="header flex items-center justify-between gap-[16px] flex-wrap">
+ <div class="left">
+         <h1  class="text-[36px] font-semibold mb-[10px] text-dark">Dashboard</h1>
+     <ul class="breadcrumb flex items-center space-x-[16px]">
+        <li class="text-[#363949]"><a href="#">
+         Client &npr;
+           </a></li>
+         /
+        <li class="text-[#363949]"><a href="#" class="active">Cars &npr;</a></li> /
+        <li class="text-[#363949]"><a href="#" >Contrats &npr;</a></li> /
+        <li class="text-[#363949]"><a href="#" >Statistic &npr;</a></li>
+
+     </ul>
+   </div>
+   <a href="#" class="report h-[36px] px-[16px] rounded-[36px] bg-[#1976D2] text-[#f6f6f6] flex items-center justify-center gap-[10px] font-medium">
+   <i class="fa-solid fa-user-plus"></i>
+                    <span>Add Client</span>
+    </a>
+ </div>
+ <!-- insights-->
+ <ul class="insights">
+                <li>
+                    <i class='bx bx-calendar-check'></i>
+                    <span class="info">
+                        <h3>
+                            1,074
+                        </h3>
+                        <p>Paid Order</p>
+                    </span>
+                </li>
+                <li><i class='bx bx-show-alt'></i>
+                    <span class="info">
+                        <h3>
+                            3,944
+                        </h3>
+                        <p>Site Visit</p>
+                    </span>
+                </li>
+                <li><i class='bx bx-line-chart'></i>
+                    <span class="info">
+                        <h3>
+                            14,721
+                        </h3>
+                        <p>Searches</p>
+                    </span>
+                </li>
+ </ul>
+ </main>
 </div>
  <script src="/tailwind.js"></script>
+ <script src="/main.js"></script>
 </body>
 
 </html>
