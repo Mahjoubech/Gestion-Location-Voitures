@@ -17,7 +17,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="2">
+    <meta http-equiv="refresh" content="5">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -83,40 +83,78 @@
         <li class="text-[#363949]"><a href="#" >Statistic &npr;</a></li>
 
      </ul>
-   </div>
+</div>
    <a href="#" class="report h-[36px] px-[16px] rounded-[36px] bg-[#1976D2] text-[#f6f6f6] flex items-center justify-center gap-[10px] font-medium">
    <i class="fa-solid fa-user-plus"></i>
                     <span>Add Client</span>
     </a>
  </div>
  <!-- insights-->
- <ul class="insights">
+ <ul class="insights grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))] gap-[24px] mt-[36px]">
                 <li>
-                    <i class='bx bx-calendar-check'></i>
+                 <i class="fa-solid fa-user-group"></i>
                     <span class="info">
                         <h3>
-                            1,074
+                            20
                         </h3>
-                        <p>Paid Order</p>
+                        <p>Clients</p>
                     </span>
                 </li>
-                <li><i class='bx bx-show-alt'></i>
+                <li><i class="fa-solid fa-car-side"></i>
                     <span class="info">
                         <h3>
-                            3,944
+                           10
                         </h3>
-                        <p>Site Visit</p>
+                        <p>Cars</p>
                     </span>
                 </li>
-                <li><i class='bx bx-line-chart'></i>
+                <li><i class="fa-solid fa-file-signature"></i>
                     <span class="info">
                         <h3>
-                            14,721
+                           12
                         </h3>
-                        <p>Searches</p>
+                        <p>Contrats</p>
                     </span>
                 </li>
  </ul>
+ <!---- data content ---->
+ <div class="bottom-data flex flex-wrap gap-[24px] mt-[24px] w-full ">
+ <div class="orders  flex-grow flex-[1_0_500px]">
+ <div class="header  flex items-center gap-[16px] mb-[24px]">
+        <i class='bx bx-list-check'></i>
+        <h3 class="mr-auto text-[24px] font-semibold">List Clients</h3>
+        <i class='bx bx-filter'></i>
+        <i class='bx bx-search'></i>
+</div>
+<!--- tables---->
+<table  class="w-full border-collapse">
+                        <thead>
+                            <tr class="">
+                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">ID</th>
+                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">First Name</th>
+                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Last Name</th>
+                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Email</th>
+                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Phone</th>
+                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Adress</th>
+                                <th class="pb-3 px-5 text-sm text-left border-b border-grey">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="py-4 px-3">
+                                    1
+                                </td>
+                                <td class="py-4 px-3">Cherkaoui</td>
+                                <td class="py-4 px-3">Mahjoub</td>
+                                <td class="py-4 px-3">cherkaouielmahjoub50@gmail.com</td>
+                                <td class="py-4 px-3">+212684153876</td>
+                                <td class="py-4 px-3">Hay ENNEHDA CHICHAOUA</td>
+                                <td class="py-4 px-3"> <i class='bx bx-edit-alt'></i> <i class="fa-solid fa-trash"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+ </div>
+ </div>
  </main>
 </div>
  <script src="/tailwind.js"></script>

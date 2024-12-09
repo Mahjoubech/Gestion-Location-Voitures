@@ -202,59 +202,80 @@ body {
     pointer-events: none;
 }
 
+.content main .insights li {
+    padding: 24px;
+    background: var(--light);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    grid-gap: 24px;
+    cursor: pointer;
+}
 
+.content main .insights li .fa-solid {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.content main .insights li:nth-child(1) .fa-solid  {
+    background: var(--light-primary);
+    color: var(--primary);
+}
+.content main .insights li:nth-child(2) .fa-solid  {
+    background: var(--light-warning);
+    color: var(--warning);
+}
+.content main .insights li:nth-child(3) .fa-solid  {
+    background: var(--light-success);
+    color: var(--success);
+}
+.content main .insights li .info h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--dark);
+}
+.content main .insights li .info p {
+    color: var(--dark);
+}
+.content main .bottom-data {
+    color: var(--dark);
+}
+.content main .bottom-data>div {
+    border-radius: 20px;
+    background: var(--light);
+    padding: 24px 24px 0 24px;
+    overflow-x: auto;
+}
+.content main .bottom-data .header .bx {
+    cursor: pointer;
+}
+.content main .bottom-data .orders table tr td:last-child {
+    display: flex;
+    align-items: center;
+    grid-gap: 12px;
+    padding-left: 6px;
+}
+.fa-trash{
+    color: #D32F2F;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.5s ease;
 
+}
+.bx-edit-alt{
+    color: #00c375;
+    font-size: 24px; 
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+.fa-trash:hover,
+.bx-edit-alt:hover{
+    transform: scale(1.08);
 
-
-
+}
 /*responsive*/
 
-@media screen and (max-width: 768px) {
-    .sidebar {
-        width: 200px;
-    }
-    .content {
-        width: calc(100% - 60px);
-        left: 200px;
-    }
-}
-
-@media screen and (max-width: 576px) {
-    .content nav form .form-input input {
-        display: none;
-    }
-    .content nav form .form-input button {
-        width: auto;
-        height: auto;
-        background: transparent;
-        color: var(--dark);
-        border-radius: none;
-    }
-    .content nav form.show .form-input input {
-        display: block;
-        width: 100%;
-    }
-    .content nav form.show .form-input button {
-        width: 36px;
-        height: 100%;
-        color: var(--light);
-        background: var(--danger);
-        border-radius: 0 36px 36px 0;
-    }
-    .content nav form.show~.notif,
-    .content nav form.show~.profile {
-        display: none;
-    }
-    .content main .insights {
-        grid-template-columns: 1fr;
-    }
-    .content main .bottom-data .header {
-        min-width: 340px;
-    }
-    .content main .bottom-data .orders table {
-        min-width: 340px;
-    }
-    .content main .bottom-data .reminders .task-list {
-        min-width: 340px;
-    }
-}
