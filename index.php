@@ -84,7 +84,7 @@
 
      </ul>
 </div>
-   <a href="#" class="report h-[36px] px-[16px] rounded-[36px] bg-[#1976D2] text-[#f6f6f6] flex items-center justify-center gap-[10px] font-medium">
+   <a id="buttonadd" href="#" class="report h-[36px] px-[16px] rounded-[36px] bg-[#1976D2] text-[#f6f6f6] flex items-center justify-center gap-[10px] font-medium">
    <i class="fa-solid fa-user-plus"></i>
                     <span>Add Client</span>
     </a>
@@ -131,9 +131,7 @@
                         <thead>
                             <tr class="">
                                 <th class="pb-3 px-3 text-sm text-left border-b border-grey">ID</th>
-                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">First Name</th>
-                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Last Name</th>
-                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Email</th>
+                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Complet Name</th>
                                 <th class="pb-3 px-3 text-sm text-left border-b border-grey">Phone</th>
                                 <th class="pb-3 px-3 text-sm text-left border-b border-grey">Adress</th>
                                 <th class="pb-3 px-5 text-sm text-left border-b border-grey">Action</th>
@@ -144,18 +142,50 @@
                                 <td class="py-4 px-3">
                                     1
                                 </td>
-                                <td class="py-4 px-3">Cherkaoui</td>
-                                <td class="py-4 px-3">Mahjoub</td>
-                                <td class="py-4 px-3">cherkaouielmahjoub50@gmail.com</td>
+                                <td class="py-4 px-3">Cherkaoui Mahjoub</td>
                                 <td class="py-4 px-3">+212684153876</td>
                                 <td class="py-4 px-3">Hay ENNEHDA CHICHAOUA</td>
                                 <td class="py-4 px-3"> <i class='bx bx-edit-alt'></i> <i class="fa-solid fa-trash"></i></td>
                             </tr>
                         </tbody>
-                    </table>
+  </table>
  </div>
  </div>
  </main>
+ 
+</div>
+<div action="" class=" absolute right-0 top-[160px] z-50">
+<div class="content">
+    <button id="addClientBtn" class="add-client-btn">+ Add Client</button>
+    <div id="addClientForm" class="add-client-form">
+        <form>
+            <h2>Add Client</h2>
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" placeholder="Enter First Name" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" placeholder="Enter Last Name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter Email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="text" id="phone" placeholder="Enter Phone" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" placeholder="Enter Address" required>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+            <button type="button" id="closeForm" class="close-btn">Close</button>
+        </form>
+    </div>
+</div>
+
 </div>
  <script src="/tailwind.js"></script>
  <script src="/main.js"></script>

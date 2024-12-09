@@ -1,7 +1,8 @@
 let sideLinks = document.querySelectorAll('.sidebar .side-menu li a:not(.logout)');
 sideLinks.forEach(item => {
     const li = item.parentElement;
-    item.addEventListener('click', () => {
+    item.addEventListener('click', (e) => {
+        e.preventDefault();
         sideLinks.forEach(i => {
             i.parentElement.classList.remove('active');
         })
@@ -11,7 +12,8 @@ sideLinks.forEach(item => {
 
 let menuBar = document.querySelector('.content nav .bx.bx-menu');
 let sideBar = document.querySelector('.sidebar');
-menuBar.addEventListener('click', () => {
+menuBar.addEventListener('click', (e) => {
+    e.preventDefault();
     sideBar.classList.toggle('close');
 });
 
@@ -49,3 +51,13 @@ toggler.addEventListener('change', function() {
         document.body.classList.remove('dark');
     }
 });
+
+
+document.getElementById('buttonadd').addEventListener('click', function(e) {
+    e.preventDefault()
+    document.getElementById('addClientForm').classList.add('active');
+});
+
+document.getElementById('closeForm').addEventListener('click', function() {
+    document.getElementById('addClientForm').classList.remove('active');
+})
