@@ -1,16 +1,17 @@
-
 <?php
- $host = 'localhost';     
- $dbname = 'location_voiture';  
- $username = 'root';     
- $password = 'Mahjoub@123';          
- 
- try {
-     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
- } catch (PDOException $e) {
-     echo "Erreur de connexion : " . $e->getMessage();
- }
+include("./views/addClient.php");
+?>
+<?php
+ require_once './views/databasecnx.php';
+ //for display data
+ //Requets
+  $sqldata= $pdo->query('SELECT * FROM client');
+  //Get values
+  $client = $sqldata-> fetchAll(PDO::FETCH_ASSOC); 
+//   echo'<pre>';
+//   print_r($client);
+//   echo'</pre>';
+//   var_dump($client);
  ?>
 
 <!DOCTYPE html>
@@ -69,10 +70,10 @@
             </a>
     </nav>
 <!-- end nav -->
- <main class="w-full p-[36px_24px] max-h-[calc(100vh_-_56px)]">
+ <main class=" mainn w-full p-[36px_24px] max-h-[calc(100vh_-_56px)]">
  <div  class="header flex items-center justify-between gap-[16px] flex-wrap">
  <div class="left">
-         <h1  class="text-[36px] font-semibold mb-[10px] text-dark">Dashboard</h1>
+         <h1  class="text-[36px] font-semibold mb-[10px]">Dashboard</h1>
      <ul class="breadcrumb flex items-center space-x-[16px]">
         <li class="text-[#363949]"><a href="#">
          Client &npr;
@@ -138,15 +139,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                           <?php
+                           foreach($client as $row){
+                            ?>
+                             <tr>
                                 <td class="py-4 px-3">
-                                    1
-                                </td>
-                                <td class="py-4 px-3">Cherkaoui Mahjoub</td>
-                                <td class="py-4 px-3">+212684153876</td>
-                                <td class="py-4 px-3">Hay ENNEHDA CHICHAOUA</td>
+                                    <?php echo $row['NumClient'] ?>
+                                </td>      
+                                <td class="py-4 px-3">  <?php echo $row['Nom'] ?></td>
+                                <td class="py-4 px-3">  <?php echo $row['Tele'] ?></td>
+                                <td class="py-4 px-3">  <?php echo $row['Adresse'] ?></td>
                                 <td class="py-4 px-3"> <i class='bx bx-edit-alt'></i> <i class="fa-solid fa-trash"></i></td>
                             </tr>
+                            <?php
+                           }
+                           ?>
                         </tbody>
   </table>
  </div>
@@ -154,25 +161,8 @@
  </main>
  
 </div>
-    <div id="addClientForm" class="add-client-form fixed  right-[-100%] w-full max-w-[400px] h-[450px] shadow-[2px_0_10px_rgba(0,0,0,0.1)] p-6 flex flex-col gap-5 transition-all duration-700 ease-in-out z-50 top-[166px]">
-        <form class="flex flex-col gap-4">
-            <h2 class="text-2xl font-semibold  mb-5">Add Client</h2>
-            <div class="form-group flex flex-col">
-                <label for="firstName" class="text-sm text-gray-700 mb-1">Complet Name</label>
-                <input type="text" id="firstName" placeholder="Enter First Name" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" required>
-            </div>
-            <div class="form-group flex flex-col">
-                <label for="phone" class="text-sm text-gray-700 mb-1">Phone</label>
-                <input type="text" id="phone" placeholder="Enter Phone" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" required>
-            </div>
-            <div class="form-group flex flex-col">
-                <label for="address" class="text-sm text-gray-700 mb-1">Address</label>
-                <input type="text" id="address" placeholder="Enter Address" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" required>
-            </div>
-            <button type="submit" class="submit-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out">Add</button>
-            <button type="button" id="closeForm" class="close-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out">Close</button>
-        </form>
-    </div>
+
+
 
 
 
