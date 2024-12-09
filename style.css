@@ -277,87 +277,45 @@ body {
     transform: scale(1.08);
 
 }
-/*responsive*/
-
-/* General Styles */
-.add-client-btn {
-    background-color: var(--primary);
-    color: var(--light);
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
 .add-client-form {
-    position: fixed;
-    top: 0;
-    right: -100%; /* Hidden by default */
-    width: 100%;
-    max-width: 400px;
-    height: 100%;
     background-color: var(--light);
-    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    transition: right 0.3s ease;
-    z-index: 1000;
+   
 }
-
-.add-client-form form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
 .add-client-form h2 {
-    font-size: 24px;
-    font-weight: 600;
     color: var(--dark);
-    margin-bottom: 20px;
+   
 }
-
-.add-client-form .form-group {
-    display: flex;
-    flex-direction: column;
-}
-
 .add-client-form .form-group label {
-    font-size: 14px;
+  
     color: var(--dark-grey);
-    margin-bottom: 5px;
+   
 }
 
 .add-client-form .form-group input {
-    padding: 10px;
     border: 1px solid var(--grey);
-    border-radius: 8px;
-    outline: none;
-    font-size: 14px;
+  
 }
 
 .add-client-form .submit-btn {
     background-color: var(--primary);
     color: var(--light);
-    border: none;
-    padding: 10px 15px;
-    border-radius: 8px;
-    cursor: pointer;
 }
-
+.add-client-form .submit-btn:hover{
+    background-color: #0f59a3;
+    transform: scale(1.02);
+}
 .add-client-form .close-btn {
     background-color: var(--danger);
     color: var(--light);
-    border: none;
-    padding: 10px 15px;
-    border-radius: 8px;
-    cursor: pointer;
 }
-
-/* Visible Form */
+.add-client-form .close-btn:hover{
+    background-color: #a82020;
+    transform: scale(1.02);
+}
 .add-client-form.active {
     right: 0;
 }
+/*responsive*/
+
+
+

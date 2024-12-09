@@ -17,7 +17,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="5">
+    <!-- <meta http-equiv="refresh" content="5"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -154,39 +154,28 @@
  </main>
  
 </div>
-<div action="" class=" absolute right-0 top-[160px] z-50">
-<div class="content">
-    <button id="addClientBtn" class="add-client-btn">+ Add Client</button>
-    <div id="addClientForm" class="add-client-form">
-        <form>
-            <h2>Add Client</h2>
-            <div class="form-group">
-                <label for="firstName">First Name</label>
-                <input type="text" id="firstName" placeholder="Enter First Name" required>
+    <div id="addClientForm" class="add-client-form fixed  right-[-100%] w-full max-w-[400px] h-[450px] shadow-[2px_0_10px_rgba(0,0,0,0.1)] p-6 flex flex-col gap-5 transition-all duration-700 ease-in-out z-50 top-[166px]">
+        <form class="flex flex-col gap-4">
+            <h2 class="text-2xl font-semibold  mb-5">Add Client</h2>
+            <div class="form-group flex flex-col">
+                <label for="firstName" class="text-sm text-gray-700 mb-1">Complet Name</label>
+                <input type="text" id="firstName" placeholder="Enter First Name" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" required>
             </div>
-            <div class="form-group">
-                <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" placeholder="Enter Last Name" required>
+            <div class="form-group flex flex-col">
+                <label for="phone" class="text-sm text-gray-700 mb-1">Phone</label>
+                <input type="text" id="phone" placeholder="Enter Phone" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" required>
             </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Enter Email" required>
+            <div class="form-group flex flex-col">
+                <label for="address" class="text-sm text-gray-700 mb-1">Address</label>
+                <input type="text" id="address" placeholder="Enter Address" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" required>
             </div>
-            <div class="form-group">
-                <label for="phone">Phone</label>
-                <input type="text" id="phone" placeholder="Enter Phone" required>
-            </div>
-            <div class="form-group">
-                <label for="address">Address</label>
-                <input type="text" id="address" placeholder="Enter Address" required>
-            </div>
-            <button type="submit" class="submit-btn">Submit</button>
-            <button type="button" id="closeForm" class="close-btn">Close</button>
+            <button type="submit" class="submit-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out">Add</button>
+            <button type="button" id="closeForm" class="close-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out">Close</button>
         </form>
     </div>
-</div>
 
-</div>
+
+
  <script src="/tailwind.js"></script>
  <script src="/main.js"></script>
 </body>
