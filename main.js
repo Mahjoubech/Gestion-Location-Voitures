@@ -2,7 +2,7 @@ let sideLinks = document.querySelectorAll('.sidebar .side-menu li a:not(.logout)
 sideLinks.forEach(item => {
     const li = item.parentElement;
     item.addEventListener('click', (e) => {
-        e.preventDefault();
+
         sideLinks.forEach(i => {
             i.parentElement.classList.remove('active');
         })
@@ -58,6 +58,13 @@ document.getElementById('buttonadd').addEventListener('click', function(e) {
     document.getElementById('addClientForm').classList.add('active');
 });
 
+
 document.getElementById('closeForm').addEventListener('click', function() {
-    document.getElementById('addClientForm').classList.remove('active');
+        document.getElementById('addClientForm').classList.remove('active');
+    })
+    //fooor edit
+
+document.getElementById('colseedit').addEventListener('click', function() {
+    document.getElementById('editform').classList.remove('active');
+    window.location.href = 'clients.php'
 })
