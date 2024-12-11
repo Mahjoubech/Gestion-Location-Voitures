@@ -69,6 +69,7 @@ header('Location: index.php');
             <li class=" h-12 bg-transparent ml-1.5 rounded-l-full p-1"><a href="/contrats.php"><i class="fa-solid fa-file-contract"></i></i>Contrats</a></li>
             <li class="active h-12 bg-transparent ml-1.5 rounded-l-full p-1"><a href="/statistic.php"><i class="fa-solid fa-chart-simple"></i>Statistic</a></li>
     </ul>
+    
     <ul class="side-menu w-full mt-12">
             <li class="h-12 bg-transparent ml-2.5 rounded-l-full p-1">
                 <a href="#" class="logout">

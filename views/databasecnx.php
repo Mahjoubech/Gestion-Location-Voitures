@@ -6,5 +6,6 @@ if (!$cnx) {
     // echo "Connection successful!";
 }
 
+
 ?>
 

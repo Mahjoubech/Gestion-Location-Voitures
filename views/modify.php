@@ -6,6 +6,7 @@
 // $val = mysqli_fetch_assoc($result);
 // header('Location: index.php');
 
+
 include ('./databasecnx.php');
 if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['edit'])){
     $id = $_GET['NumClientedit'];

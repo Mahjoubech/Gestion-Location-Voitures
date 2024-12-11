@@ -76,6 +76,7 @@ header('Location: clients.php');
                 </a>
             </li>
      </ul>
+     
  </div>
 <!-- end sidebar -->
 <!-- Content -->
