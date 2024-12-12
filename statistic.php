@@ -36,8 +36,12 @@ header('Location: index.php');
 
 
     // clacul somme client i have 
-     $stmt = $cnx->query("SELECT COUNT(*) AS total_clients FROM client");
-     $result = $stmt->fetch_assoc();
+    $stmt = $cnx->query("SELECT COUNT(*) AS total_clients FROM client");
+    $result = $stmt->fetch_assoc();
+    $stmtv = $cnx->query("SELECT COUNT(*) AS total_voitures FROM voiture");
+    $resultv = $stmtv->fetch_assoc();
+    $stmtc = $cnx->query("SELECT COUNT(*) AS total_contrats FROM contrat");
+    $resultc = $stmtc->fetch_assoc();
     //get data
    
    
@@ -52,6 +56,8 @@ header('Location: index.php');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <link rel="stylesheet" href="style.css">
     <script src="/tailwind.js"></script>
 </head>
@@ -69,7 +75,6 @@ header('Location: index.php');
             <li class=" h-12 bg-transparent ml-1.5 rounded-l-full p-1"><a href="/contrats.php"><i class="fa-solid fa-file-contract"></i></i>Contrats</a></li>
             <li class="active h-12 bg-transparent ml-1.5 rounded-l-full p-1"><a href="/statistic.php"><i class="fa-solid fa-chart-simple"></i>Statistic</a></li>
     </ul>
-    
     <ul class="side-menu w-full mt-12">
             <li class="h-12 bg-transparent ml-2.5 rounded-l-full p-1">
                 <a href="#" class="logout">
@@ -137,7 +142,9 @@ header('Location: index.php');
                 <li><i class="fa-solid fa-car-side"></i>
                     <span class="info">
                         <h3>
-                           10
+                        <?php
+                            echo $resultv['total_voitures'];
+                            ?>
                         </h3>
                         <p>Cars</p>
                     </span>
@@ -145,7 +152,9 @@ header('Location: index.php');
                 <li><i class="fa-solid fa-file-signature"></i>
                     <span class="info">
                         <h3>
-                           12
+                        <?php
+                            echo $resultc['total_contrats'];
+                        ?>
                         </h3>
                         <p>Contrats</p>
                     </span>

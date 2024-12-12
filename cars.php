@@ -3,9 +3,9 @@
  require_once './views/databasecnx.php';
  //for display data
  //Requets
-  $sqldata= $cnx->query('SELECT * FROM client');
+  $sqldata= $cnx->query('SELECT * FROM voiture');
   //Get values
-  $client = $sqldata->fetch_all(MYSQLI_ASSOC);
+  $voiture = $sqldata->fetch_all(MYSQLI_ASSOC);
 
 //   echo'<pre>';
 //   print_r($client);
@@ -31,13 +31,17 @@ if(isset($_GET['NumClient'])){
    $NumClient = $_GET['NumClient'];
 $delet = $cnx->prepare('DELETE FROM client WHERE NumClient=?');
 $delet->execute([$NumClient]); 
-header('Location: index.php');
+header('Location: clients.php');
 }
 
 
     // clacul somme client i have 
      $stmt = $cnx->query("SELECT COUNT(*) AS total_clients FROM client");
      $result = $stmt->fetch_assoc();
+     $stmtv = $cnx->query("SELECT COUNT(*) AS total_voitures FROM voiture");
+     $resultv = $stmtv->fetch_assoc();
+     $stmtc = $cnx->query("SELECT COUNT(*) AS total_contrats FROM contrat");
+     $resultc = $stmtc->fetch_assoc();
     //get data
    
    
@@ -52,6 +56,8 @@ header('Location: index.php');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <link rel="stylesheet" href="style.css">
     <script src="/tailwind.js"></script>
 </head>
@@ -114,11 +120,11 @@ header('Location: index.php');
         <li class="text-[#363949]"><a href="/statistic.php" >Statistic &npr;</a></li>
 
      </ul>
-     
+
 </div>
    <a id="buttonadd" href="#" class="report h-[36px] px-[16px] rounded-[36px] bg-[#1976D2] text-[#f6f6f6] flex items-center justify-center gap-[10px] font-medium">
    <i class="fa-solid fa-user-plus"></i>
-                    <span>Add Client</span>
+                    <span>Add Car</span>
     </a>
  </div>
  <!-- insights-->
@@ -137,7 +143,9 @@ header('Location: index.php');
                 <li><i class="fa-solid fa-car-side"></i>
                     <span class="info">
                         <h3>
-                           10
+                        <?php
+                            echo $resultv['total_voitures'];
+                            ?>
                         </h3>
                         <p>Cars</p>
                     </span>
@@ -145,7 +153,9 @@ header('Location: index.php');
                 <li><i class="fa-solid fa-file-signature"></i>
                     <span class="info">
                         <h3>
-                           12
+                        <?php
+                            echo $resultc['total_contrats'];
+                        ?>
                         </h3>
                         <p>Contrats</p>
                     </span>
@@ -156,7 +166,7 @@ header('Location: index.php');
  <div class="orders  flex-grow flex-[1_0_500px]">
  <div class="header  flex items-center gap-[16px] mb-[24px]">
         <i class='bx bx-list-check'></i>
-        <h3 class="mr-auto text-[24px] font-semibold">List Clients</h3>
+        <h3 class="mr-auto text-[24px] font-semibold">List Cars</h3>
         <i class='bx bx-filter'></i>
         <i class='bx bx-search'></i>
 </div>
@@ -164,27 +174,27 @@ header('Location: index.php');
 <table  class="w-full border-collapse">
                         <thead>
                             <tr class="">
-                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">ID</th>
-                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Complet Name</th>
-                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Phone</th>
-                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Adress</th>
+                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Registration number</th>
+                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Mark </th>
+                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Model </th>
+                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Year</th>
                                 <th class="pb-3 px-5 text-sm text-left border-b border-grey">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                            <?php
-                           foreach($client as $row){
+                           foreach($voiture as $voit){
                             ?>
                              <tr>
                                 <td class="py-4 px-3">
-                                    <?php echo $row['NumClient'] ?>
+                                    <?php echo $voit['NumImmatriculation'] ?>
                                 </td>      
-                                <td class="py-4 px-3">  <?php echo $row['Nom'] ?></td>
-                                <td class="py-4 px-3">  <?php echo $row['Tele'] ?></td>
-                                <td class="py-4 px-3">  <?php echo $row['Adresse'] ?></td>
+                                <td class="py-4 px-3">  <?php echo $voit['Marque'] ?></td>
+                                <td class="py-4 px-3">  <?php echo $voit['Modele'] ?></td>
+                                <td class="py-4 px-3">  <?php echo $voit['Annee'] ?></td>
                                 <td class="py-4 px-3 edit-button" > 
-                                <a href="index.php?NumClientedit=<?php echo $row['NumClient']; ?>" class="edit-btn"><i class='bx bx-edit-alt'></i>  </a>
-                                <a href="index.php?NumClient= <?php echo $row['NumClient'] ?>"><i class="fa-solid fa-trash"></i></a></td>
+                                <a href="clients?NumClientedit=<?php echo $row['NumClient']; ?>" class="edit-btn"><i class='bx bx-edit-alt'></i>  </a>
+                                <a href="clients?NumClient= <?php echo $row['NumClient'] ?>"><i class="fa-solid fa-trash"></i></a></td>
                             </tr>
                             <?php
                            }
@@ -199,21 +209,25 @@ header('Location: index.php');
 </div>
 
 <div id="addClientForm" class="add-client-form fixed  right-[-100%] w-full max-w-[400px] h-[450px] shadow-[2px_0_10px_rgba(0,0,0,0.1)] p-6 flex flex-col gap-5 transition-all duration-700 ease-in-out z-50 top-[166px]">
-        <form action="./views/ajoutclient.php" method="post"  class="flex flex-col gap-4">
-            <h2 class="text-2xl font-semibold  mb-5">Add Client</h2>
+        <form action="./views/ajoutCar.php" method="post"  class="flex flex-col gap-4">
+            <h2 class="text-2xl font-semibold  mb-5">Add Car</h2>
             <div class="form-group flex flex-col">
-                <label for="firstName" class="text-sm text-gray-700 mb-1">Complet Name</label>
-                <input name="namecomplet" type="text"  id="firstName" placeholder="Enter First Name" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" >
+                <label for="nummatrucle" class="text-sm text-gray-700 mb-1">Registration number </label>
+                <input name="NumMatricle" type="text"  id="nummatrucle" placeholder="Enter the vehicle Sirie" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" >
             </div>
             <div class="form-group flex flex-col">
-                <label for="phone" class="text-sm text-gray-700 mb-1">Phone</label>
-                <input name="phone" type="text" id="phone" placeholder="Enter Phone" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" >
+                <label for="marque" class="text-sm text-gray-700 mb-1">Mark</label>
+                <input name="Mark" type="text" id="marque" placeholder="Enter the vehicle Mark" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" >
             </div>
             <div class="form-group flex flex-col">
-                <label for="address" class="text-sm text-gray-700 mb-1">Address</label>
-                <input name="email" type="text" id="address" placeholder="Enter Address" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" >
+                <label for="modele" class="text-sm text-gray-700 mb-1">Model</label>
+                <input name="Model" type="text" id="modl" placeholder="Enter the vehicle Model" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" >
             </div>
-            <button type="submit" class="submit-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out" name="Add" >Add</button>
+            <div class="form-group flex flex-col">
+                <label for="address" class="text-sm text-gray-700 mb-1">Year</label>
+                <input  type="number"   id="vehicleYear"   name="vehYear"   min="2008"  max="2024"   required  placeholder="Enter the vehicle year" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" >
+            </div>
+            <button type="submit" class="submit-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out" name="Addveh" >Add</button>
             <button type="button" id="closeForm" class="close-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out">Close</button>
       </form>
 </div>

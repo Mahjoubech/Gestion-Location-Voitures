@@ -36,8 +36,12 @@ header('Location: clients.php');
 
 
     // clacul somme client i have 
-     $stmt = $cnx->query("SELECT COUNT(*) AS total_clients FROM client");
-     $result = $stmt->fetch_assoc();
+    $stmt = $cnx->query("SELECT COUNT(*) AS total_clients FROM client");
+    $result = $stmt->fetch_assoc();
+    $stmtv = $cnx->query("SELECT COUNT(*) AS total_voitures FROM voiture");
+    $resultv = $stmtv->fetch_assoc();
+    $stmtc = $cnx->query("SELECT COUNT(*) AS total_contrats FROM contrat");
+    $resultc = $stmtc->fetch_assoc();
     //get data
    
    
@@ -52,6 +56,7 @@ header('Location: clients.php');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
     <script src="/tailwind.js"></script>
 </head>
@@ -76,7 +81,6 @@ header('Location: clients.php');
                 </a>
             </li>
      </ul>
-     
  </div>
 <!-- end sidebar -->
 <!-- Content -->
@@ -137,7 +141,9 @@ header('Location: clients.php');
                 <li><i class="fa-solid fa-car-side"></i>
                     <span class="info">
                         <h3>
-                           10
+                        <?php
+                            echo $resultv['total_voitures'];
+                            ?>
                         </h3>
                         <p>Cars</p>
                     </span>
@@ -145,7 +151,9 @@ header('Location: clients.php');
                 <li><i class="fa-solid fa-file-signature"></i>
                     <span class="info">
                         <h3>
-                           12
+                        <?php
+                            echo $resultc['total_contrats'];
+                        ?>
                         </h3>
                         <p>Contrats</p>
                     </span>

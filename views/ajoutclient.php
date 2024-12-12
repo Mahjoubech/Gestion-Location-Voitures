@@ -9,11 +9,9 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['Add'])){
         //insert into
     $query =  $cnx->query("INSERT INTO client (NumClient, Nom, Adresse, Tele) 
                                 VALUES (null ,'$nomcmpl', '$email' ,'$phone')");
-    header('Location: ../index.php');
+    header('Location: ../clients.php');
        
        }else{
-        
-        echo "alert(hhhhhhhhhhhhhhhhhhhhhhhhhhh);";
         header('Location: ../clients.php');
 
        }

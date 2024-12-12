@@ -10,7 +10,6 @@ sideLinks.forEach(item => {
     })
 });
 
-
 let menuBar = document.querySelector('.content nav .bx.bx-menu');
 let sideBar = document.querySelector('.sidebar');
 menuBar.addEventListener('click', (e) => {
