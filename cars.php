@@ -11,27 +11,27 @@
 //   print_r($client);
 //   echo'</pre>';
 //   var_dump($client);
-if(isset($_GET['NumClientedit'])){
+if(isset($_GET['Numcaredit'])){
 
-    $id = $_GET['NumClientedit'];
-    $edit = "SELECT * FROM `client` WHERE NumClient = $id";
+    $id = $_GET['Numcaredit'];
+    $edit = "SELECT * FROM `voiture` WHERE NumImmatriculation = $id";
     $result = mysqli_query($cnx, $edit);
-    $val = mysqli_fetch_assoc($result);
-    if(isset($val)) {
+    $valcar = mysqli_fetch_assoc($result);
+    if(isset($valcar)) {
         echo "<script>
-            console.log(document.getElementById('editform'));
+            console.log(document.getElementById('editformcar'));
             document.addEventListener('DOMContentLoaded', () => {
-                document.getElementById('editform').classList.add('active');
+                document.getElementById('editformcar').classList.add('active');
             })
-        </script>";
+            </script>";
     }
 }
 //delet
-if(isset($_GET['NumClient'])){
-   $NumClient = $_GET['NumClient'];
-$delet = $cnx->prepare('DELETE FROM client WHERE NumClient=?');
-$delet->execute([$NumClient]); 
-header('Location: clients.php');
+if(isset($_GET['NumCar'])){
+   $NumCar = $_GET['NumCar'];
+$delet = $cnx->prepare("DELETE FROM voiture WHERE NumImmatriculation=? ");
+$delet->execute([$NumCar]); 
+header('Location: cars.php');
 }
 
 
@@ -123,7 +123,7 @@ header('Location: clients.php');
 
 </div>
    <a id="buttonadd" href="#" class="report h-[36px] px-[16px] rounded-[36px] bg-[#1976D2] text-[#f6f6f6] flex items-center justify-center gap-[10px] font-medium">
-   <i class="fa-solid fa-user-plus"></i>
+   <i class="fa-solid fa-car"></i>
                     <span>Add Car</span>
     </a>
  </div>
@@ -193,8 +193,8 @@ header('Location: clients.php');
                                 <td class="py-4 px-3">  <?php echo $voit['Modele'] ?></td>
                                 <td class="py-4 px-3">  <?php echo $voit['Annee'] ?></td>
                                 <td class="py-4 px-3 edit-button" > 
-                                <a href="clients?NumClientedit=<?php echo $row['NumClient']; ?>" class="edit-btn"><i class='bx bx-edit-alt'></i>  </a>
-                                <a href="clients?NumClient= <?php echo $row['NumClient'] ?>"><i class="fa-solid fa-trash"></i></a></td>
+                                <a href="cars.php?NumCaredit=<?php echo $voit['NumImmatriculation']; ?>" class="edit-btn"><i class='bx bx-edit-alt'></i>  </a>
+                                <a href="cars.php?NumCar=<?php echo $voit['NumImmatriculation']; ?>"><i class="fa-solid fa-trash"></i></a></td>
                             </tr>
                             <?php
                            }
@@ -224,7 +224,7 @@ header('Location: clients.php');
                 <input name="Model" type="text" id="modl" placeholder="Enter the vehicle Model" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" >
             </div>
             <div class="form-group flex flex-col">
-                <label for="address" class="text-sm text-gray-700 mb-1">Year</label>
+                <label for="year" class="text-sm text-gray-700 mb-1">Year</label>
                 <input  type="number"   id="vehicleYear"   name="vehYear"   min="2008"  max="2024"   required  placeholder="Enter the vehicle year" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" >
             </div>
             <button type="submit" class="submit-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out" name="Addveh" >Add</button>
@@ -232,23 +232,27 @@ header('Location: clients.php');
       </form>
 </div>
 
-<div id="editform" class="add-client-form fixed  right-[-100%] w-full max-w-[400px] h-[450px] shadow-[2px_0_10px_rgba(0,0,0,0.1)] p-6 flex flex-col gap-5 transition-all duration-700 ease-in-out z-50 top-[166px]">
-        <form action="./views/modify.php?NumClientedit=<?php echo $val['NumClient'] ?>" method="post" class="flex flex-col gap-4">
-       <h2 class="text-2xl font-semibold  mb-5">Update Client</h2>
+<div id="editformcar" class="add-client-form fixed  right-[-100%] w-full max-w-[400px] h-[450px] shadow-[2px_0_10px_rgba(0,0,0,0.1)] p-6 flex flex-col gap-5 transition-all duration-700 ease-in-out z-50 top-[166px]">
+        <form action="./views/modifycar.php?Numcar=<?php echo $valcar['NumImmatriculation'] ?>" method="post" class="flex flex-col gap-4">
+       <h2 class="text-2xl font-semibold  mb-5">Update Car</h2>
             <div class="form-group flex flex-col">
-                <label for="firstName" class="text-sm text-gray-700 mb-1">New Complet Name</label>
-                <input name="namecomplet" type="text"  id="firstName" placeholder="Enter Complet Name" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" value="<?php if(isset($val['Nom'])) echo $val['Nom']?>">
+                <label for="nummatrucle" class="text-sm text-gray-700 mb-1">New Registration number</label>
+                <input name="NumMatricle" type="text"  id="nummatrucle" placeholder="Enter the vehicle Sirie" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" value="<?php if(isset($valcar['NumImmatriculation'])) echo $valcar['NumImmatriculation']?>">
             </div>
             <div class="form-group flex flex-col">
-                <label for="phone" class="text-sm text-gray-700 mb-1">New Phone</label>
-                <input name="phone" type="text" id="phone" placeholder="Enter Phone" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" value="<?php if(isset($val['Tele'])) echo $val['Tele']?>">
+                <label for="marque" class="text-sm text-gray-700 mb-1">New Mark</label>
+                <input name="Mark" type="text" id="marque" placeholder="Enter the vehicle Mark" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" value="<?php if(isset($valcar['Marque'])) echo $valcar['Marque']?>">
             </div>
             <div class="form-group flex flex-col">
-                <label for="address" class="text-sm text-gray-700 mb-1">New Address</label>
-                <input name="email" type="text" id="address" placeholder="Enter Address" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" value="<?php if(isset($val['Adresse'])) echo $val['Adresse']?>">
+                <label for="Model" class="text-sm text-gray-700 mb-1">New Model</label>
+                <input name="Model" type="text" id="Model" placeholder="Enter the vehicle Model" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" value="<?php if(isset($valcar['Modele'])) echo $valcar['Modele']?>">
             </div>
-            <button type="submit" class="submit-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out" name="edit">Edit</button>
-            <button type="button" id="colseedit" class="close-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out">Close</button>
+           <div class="form-group flex flex-col">
+                <label for="year" class="text-sm text-gray-700 mb-1">New Year</label>
+                <input  type="number"   id="vehicleYear"   name="vehYear"   min="2008"  max="2024"   required  placeholder="Enter the vehicle year" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" value="<?php if(isset($valcar['Annee'])) echo $valcar['Annee']?>">
+            </div>
+            <button type="submit" class="submit-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out" name="editveh">Edit</button>
+            <button type="button" id="colseeditcar" class="close-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out">Close</button>
       </form>
 </div> 
 

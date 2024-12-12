@@ -24,7 +24,7 @@ if(isset($_GET['NumClientedit'])){
                 document.getElementById('editform').classList.add('active');
             })
         </script>";
-    }
+    } 
 }
 //delet
 if(isset($_GET['NumClient'])){
