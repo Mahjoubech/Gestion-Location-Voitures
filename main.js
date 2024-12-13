@@ -78,3 +78,21 @@ document.getElementById('colseedit').addEventListener('click', function() {
     document.getElementById('editcontform').classList.remove('active');
     window.location.href = 'contrats.php'
 })
+
+document.getElementById("DateDebut").addEventListener("change", calculateDuration);
+document.getElementById("DateFin").addEventListener("change", calculateDuration);
+
+function calculateDuration() {
+    let startDate = document.getElementById("DateDebut").value;
+    let endDate = document.getElementById("DateFin").value;
+
+    if (startDate && endDate) {
+        let start = new Date(startDate);
+        let end = new Date(endDate);
+        let differenceInTime = end - start;
+        let differenceInDays = differenceInTime / (1000 * 60 * 60 * 24);
+        document.getElementById("Duree").value = differenceInDays;
+    } else {
+        document.getElementById("Duree").value = '';
+    }
+}
