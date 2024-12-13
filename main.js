@@ -79,20 +79,41 @@ document.getElementById('colseedit').addEventListener('click', function() {
     window.location.href = 'contrats.php'
 })
 
-document.getElementById("DateDebut").addEventListener("change", calculateDuration);
-document.getElementById("DateFin").addEventListener("change", calculateDuration);
+document.querySelector(".DateDebut").addEventListener("change", calculateDuration);
+document.querySelector(".DateFin").addEventListener("change", calculateDuration);
 
 function calculateDuration() {
-    let startDate = document.getElementById("DateDebut").value;
-    let endDate = document.getElementById("DateFin").value;
+    let startDate = document.querySelector(".DateDebut").value;
+    let endDate = document.querySelector(".DateFin").value;
+
+    console.log(startDate);
 
     if (startDate && endDate) {
         let start = new Date(startDate);
         let end = new Date(endDate);
         let differenceInTime = end - start;
         let differenceInDays = differenceInTime / (1000 * 60 * 60 * 24);
-        document.getElementById("Duree").value = differenceInDays;
+        document.querySelector(".Duree").value = differenceInDays;
     } else {
-        document.getElementById("Duree").value = '';
+        document.querySelector(".Duree").value = '';
+    }
+}
+document.querySelector(".DateDebutt").addEventListener("change", calculateDuration);
+document.querySelector(".DateFint").addEventListener("change", calculateDuration);
+
+function calculateDuration() {
+    let startDate = document.querySelector(".DateDebutt").value;
+    let endDate = document.querySelector(".DateFint").value;
+
+    console.log(startDate);
+
+    if (startDate && endDate) {
+        let start = new Date(startDate);
+        let end = new Date(endDate);
+        let differenceInTime = end - start;
+        let differenceInDays = differenceInTime / (1000 * 60 * 60 * 24);
+        document.querySelector(".Dureet").value = differenceInDays;
+    } else {
+        document.querySelector(".Dureet").value = '';
     }
 }
