@@ -46,18 +46,7 @@ header('Location: contrats.php');
     $resultc = $stmtc->fetch_assoc();
     //get data
    
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $startDate = $_POST['DateDebut'];
-        $endDate = $_POST['DateFin'];
     
-        if ($startDate && $endDate) {
-            $start = new DateTime($startDate);
-            $end = new DateTime($endDate);
-            $interval = $start->diff($end);
-            $duree = $interval->days;
-        }
-        
-    }
 
 
  ?>
@@ -273,7 +262,7 @@ header('Location: contrats.php');
             
             <div class="form-group flex flex-col">
                 <label for="Duree"  class="text-sm text-gray-700 mb-1">Duration:</label>
-            <input type="number" id="Duree" name="Duree" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" required>
+            <input type="number" id="Duree" name="Duree" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" readonly>
             </div>
             <button type="submit" class="submit-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out" name="Addcontrat" >Add</button>
             <button type="button" id="closeForm" class="close-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out">Close</button>
