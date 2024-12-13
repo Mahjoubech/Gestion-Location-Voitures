@@ -46,7 +46,18 @@ header('Location: contrats.php');
     $resultc = $stmtc->fetch_assoc();
     //get data
    
-   
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $startDate = $_POST['DateDebut'];
+        $endDate = $_POST['DateFin'];
+    
+        if ($startDate && $endDate) {
+            $start = new DateTime($startDate);
+            $end = new DateTime($endDate);
+            $interval = $start->diff($end);
+            $duree = $interval->days;
+        }
+        
+    }
 
 
  ?>
@@ -197,7 +208,7 @@ header('Location: contrats.php');
                                 <td class="py-4 px-3">  <?php echo $cont['NumImmatriculation'] ?></td>
                                 <td class="py-4 px-3">  <?php echo $cont['DateDebut'] ?></td>
                                 <td class="py-4 px-3">  <?php echo $cont['DateFin'] ?></td>
-                                <td class="py-4 px-3">  <?php echo $cont['Duree'] ?></td>
+                                <td class="py-4 px-3">  <?php echo $cont['Duree'] ?> Days</td>
                                 <td class="py-4 px-10 edit-button"><button type="button" onclick="window.print()" class="edit-btn flex justify-around items-center gap-2 "><i class="fa-solid fa-print"></i> <P>Print</P></button></td> 
                                 <td class="py-4 px-3 edit-button"> 
                                 <a href="contrats.php?NumContratId=<?php echo $cont['NumContrat']; ?>" class="edit-btn"><i class='bx bx-edit-alt'></i>  </a>
