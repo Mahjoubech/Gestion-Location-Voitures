@@ -11,20 +11,21 @@
 //   print_r($client);
 //   echo'</pre>';
 //   var_dump($client);
-if(isset($_GET['Numcaredit'])){
 
-    $id = $_GET['Numcaredit'];
-    $edit = "SELECT * FROM `voiture` WHERE NumImmatriculation = $id";
+//For Display Data in Form Update
+if(isset($_GET['NumCaredit'])){
+
+    $id = $_GET['NumCaredit'];
+    $edit = "SELECT * FROM `voiture` WHERE NumImmatriculation= '$id'";
     $result = mysqli_query($cnx, $edit);
-    $valcar = mysqli_fetch_assoc($result);
-    if(isset($valcar)) {
+     $valcar = mysqli_fetch_assoc($result);
+    if(isset($valcar)) {                                            
         echo "<script>
-            console.log(document.getElementById('editformcar'));
             document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('editformcar').classList.add('active');
             })
             </script>";
-    }
+     }
 }
 //delet
 if(isset($_GET['NumCar'])){
@@ -208,7 +209,7 @@ header('Location: cars.php');
  
 </div>
 
-<div id="addClientForm" class="add-client-form fixed  right-[-100%] w-full max-w-[400px] h-[450px] shadow-[2px_0_10px_rgba(0,0,0,0.1)] p-6 flex flex-col gap-5 transition-all duration-700 ease-in-out z-50 top-[166px]">
+<div id="addClientForm" class="add-client-form fixed  right-[-100%] w-full max-w-[400px] h-[520px] shadow-[2px_0_10px_rgba(0,0,0,0.1)] p-6 flex flex-col gap-5 transition-all duration-700 ease-in-out z-50 top-[166px]">
         <form action="./views/ajoutCar.php" method="post"  class="flex flex-col gap-4">
             <h2 class="text-2xl font-semibold  mb-5">Add Car</h2>
             <div class="form-group flex flex-col">
@@ -232,7 +233,7 @@ header('Location: cars.php');
       </form>
 </div>
 
-<div id="editformcar" class="add-client-form fixed  right-[-100%] w-full max-w-[400px] h-[450px] shadow-[2px_0_10px_rgba(0,0,0,0.1)] p-6 flex flex-col gap-5 transition-all duration-700 ease-in-out z-50 top-[166px]">
+<div id="editformcar" class="add-client-form fixed  right-[-100%] w-full max-w-[400px] h-[520px] shadow-[2px_0_10px_rgba(0,0,0,0.1)] p-6 flex flex-col gap-5 transition-all duration-700 ease-in-out z-50 top-[166px]">
         <form action="./views/modifycar.php?Numcar=<?php echo $valcar['NumImmatriculation'] ?>" method="post" class="flex flex-col gap-4">
        <h2 class="text-2xl font-semibold  mb-5">Update Car</h2>
             <div class="form-group flex flex-col">
@@ -252,7 +253,7 @@ header('Location: cars.php');
                 <input  type="number"   id="vehicleYear"   name="vehYear"   min="2008"  max="2024"   required  placeholder="Enter the vehicle year" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" value="<?php if(isset($valcar['Annee'])) echo $valcar['Annee']?>">
             </div>
             <button type="submit" class="submit-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out" name="editveh">Edit</button>
-            <button type="button" id="colseeditcar" class="close-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out">Close</button>
+            <button type="button" id="colseedit" class="close-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out">Close</button>
       </form>
 </div> 
 
