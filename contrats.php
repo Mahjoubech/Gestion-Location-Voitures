@@ -13,21 +13,17 @@
  
   //Get values
   $contrat = $cntracnx->fetch_all(MYSQLI_ASSOC);
-//   echo'<pre>';
-//   print_r($client);
-//   echo'</pre>';
-//   var_dump($client);
-if(isset($_GET['NumClientedit'])){
+if(isset($_GET['NumContratId'])){
 
-    $id = $_GET['NumClientedit'];
-    $edit = "SELECT * FROM `client` WHERE NumClient = $id";
+    $id = $_GET['NumContratId'];
+    $edit = "SELECT * FROM `contrat` WHERE NumContrat = $id";
     $result = mysqli_query($cnx, $edit);
-    $val = mysqli_fetch_assoc($result);
-    if(isset($val)) {
+    $cos = mysqli_fetch_assoc($result);
+    if(isset($cos)) {
         echo "<script>
-            console.log(document.getElementById('editform'));
+            console.log(document.getElementById('editcontform'));
             document.addEventListener('DOMContentLoaded', () => {
-                document.getElementById('editform').classList.add('active');
+                document.getElementById('editcontform').classList.add('active');
             })
         </script>";
     }
@@ -204,7 +200,7 @@ header('Location: contrats.php');
                                 <td class="py-4 px-3">  <?php echo $cont['Duree'] ?></td>
                                 <td class="py-4 px-10 edit-button"><button type="button" onclick="window.print()" class="edit-btn flex justify-around items-center gap-2 "><i class="fa-solid fa-print"></i> <P>Print</P></button></td> 
                                 <td class="py-4 px-3 edit-button"> 
-                                <a href="clients.php?NumClientedit=<?php echo $cont['NumClient']; ?>" class="edit-btn"><i class='bx bx-edit-alt'></i>  </a>
+                                <a href="contrats.php?NumContratId=<?php echo $cont['NumContrat']; ?>" class="edit-btn"><i class='bx bx-edit-alt'></i>  </a>
                                 <a href="contrats.php?NumClientcontrat= <?php echo $cont['NumContrat'] ?>"><i class="fa-solid fa-trash"></i></a></td>
                                
 
@@ -273,22 +269,23 @@ header('Location: contrats.php');
       </form>
 </div>
 
-<div id="editform" class="add-client-form fixed  right-[-100%] w-full max-w-[400px] h-[450px] shadow-[2px_0_10px_rgba(0,0,0,0.1)] p-6 flex flex-col gap-5 transition-all duration-700 ease-in-out z-50 top-[166px]">
-        <form action="./views/modify.php?NumClientedit=<?php echo $val['NumClient'] ?>" method="post" class="flex flex-col gap-4">
-       <h2 class="text-2xl font-semibold  mb-5">Update Client</h2>
+<div id="editcontform" class="add-client-form fixed  right-[-100%] w-full max-w-[400px] h-[450px] shadow-[2px_0_10px_rgba(0,0,0,0.1)] p-6 flex flex-col gap-5 transition-all duration-700 ease-in-out z-50 top-[166px]">
+<form action="./views/modifycontrat.php?Numcontratedit=<?php echo $cos['NumContrat'] ?>" method="post"  class="flex flex-col gap-4">
+            <h2 class="text-2xl font-semibold  mb-5">Update Contrat</h2>
             <div class="form-group flex flex-col">
-                <label for="firstName" class="text-sm text-gray-700 mb-1">New Complet Name</label>
-                <input name="namecomplet" type="text"  id="firstName" placeholder="Enter Complet Name" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" value="<?php if(isset($val['Nom'])) echo $val['Nom']?>">
+                <label for="DateDebut" class="text-sm text-gray-700 mb-1">New Start Date:</label>
+                <input type="date" id="DateDebut" name="DatDbut" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" value="<?php if(isset($cos['DateDebut'])) echo $cos['DateDebut']?>" required>
             </div>
             <div class="form-group flex flex-col">
-                <label for="phone" class="text-sm text-gray-700 mb-1">New Phone</label>
-                <input name="phone" type="text" id="phone" placeholder="Enter Phone" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" value="<?php if(isset($val['Tele'])) echo $val['Tele']?>">
+            <label for="DateFin" class="text-sm text-gray-700 mb-1">New End Date:</label>
+            <input type="date" id="DateFin" name="DatFin" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" value="<?php if(isset($cos['DateFin'])) echo $cos['DateFin']?>" required>
             </div>
+            
             <div class="form-group flex flex-col">
-                <label for="address" class="text-sm text-gray-700 mb-1">New Address</label>
-                <input name="email" type="text" id="address" placeholder="Enter Address" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" value="<?php if(isset($val['Adresse'])) echo $val['Adresse']?>">
+                <label for="Duree"  class="text-sm text-gray-700 mb-1">New Duration:</label>
+            <input type="number" id="Dure" name="Dure" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" value="<?php if(isset($cos['Duree'])) echo $cos['Duree']?>" required>
             </div>
-            <button type="submit" class="submit-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out" name="edit">Edit</button>
+            <button type="submit" class="submit-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out" name="contratedit" >EDIT</button>
             <button type="button" id="colseedit" class="close-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out">Close</button>
       </form>
 </div> 
