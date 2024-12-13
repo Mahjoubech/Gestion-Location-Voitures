@@ -28,6 +28,11 @@ Ce projet vise à créer une **application web responsive** pour gérer les **cl
 ### Interface Responsive :
 - Optimisée pour **ordinateurs, tablettes et mobiles** grâce à Tailwind CSS.
 - **Tableaux dynamiques** pour une meilleure visualisation des données.
+![image](https://github.com/user-attachments/assets/e6bd1632-9f3d-4a35-bc64-67916ec32c49)
+![image](https://github.com/user-attachments/assets/8f7ab881-1e8e-49ae-b1be-d637db53f1c2)
+![image](https://github.com/user-attachments/assets/482865a0-26ec-4458-933a-c369d23052d4)
+
+
 
 ---
 
@@ -37,7 +42,8 @@ Les relations suivantes sont gérées dans la base de données :
 - **Client ↔ Contrat** : Un client peut avoir plusieurs contrats.
 - **Voiture ↔ Contrat** : Une voiture peut être liée à plusieurs contrats de location.
 
-![Diagramme E-A](./assets/er-diagram.png) <!-- Ajoutez l'image de votre diagramme ici -->
+[image](https://github.com/user-attachments/assets/24ec17d4-060e-4f90-ae8e-59cfff3283a9)
+
 
 ---
 
@@ -74,4 +80,51 @@ Les relations suivantes sont gérées dans la base de données :
 ├── 📄 tailwind.config.js|
 ├── 📄 tailwind.js|
 └── 📄 README.md|
+-------------------
 
+
+📝 Guide d’Installation
+Cloner le dépôt :
+
+git clone [https://github.com/your-repo/car-rental-system.git](https://github.com/Mahjoubech/Gestion-Location-Voitures.git)
+cd GESTION-DE-VOITURE
+Configurer la base de données :
+
+Importez les fichiers create-tables.sql et seed-data.sql dans votre serveur MySQL.
+Configurer le backend :
+
+Mettez à jour la connexion à la base de données dans database.php avec vos identifiants.
+Lancer l’application :
+
+Démarrez l'application sur votre serveur local avec des outils comme XAMPP ou WAMP.
+🎯 Objectifs du Projet
+Base de données relationnelle :
+
+Maintenir l'intégrité des données et garantir des requêtes efficaces.
+Backend dynamique :
+
+Utilisation de PHP pour connecter et gérer les opérations CRUD.
+Interface responsive :
+
+Créer une interface moderne et intuitive pour tous les utilisateurs.
+📊 Critères d’Évaluation
+Structure de la base de données :
+
+Normalisation et intégrité relationnelle.
+Logique backend :
+
+Opérations CRUD fonctionnelles et gestion des erreurs.
+Design de l’interface :
+
+Ergonomie, responsivité et esthétisme.
+Documentation :
+
+Explications claires et concises.
+
+### DEMO 🔗
+
+- [GESTION VOITURES]( https://mahjoubech.github.io/FUT-Champions-Web-App-Ultimate-Team/)
+
+--------------------------------------------------------------------------
+
+Merci d'avoir consulter ce README. 😁
