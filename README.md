@@ -121,10 +121,4 @@ Documentation :
 
 Explications claires et concises.
 
-### DEMO 🔗
 
-- [GESTION VOITURES]( https://mahjoubech.github.io/FUT-Champions-Web-App-Ultimate-Team/)
-
---------------------------------------------------------------------------
-
-Merci d'avoir consulter ce README. 😁
