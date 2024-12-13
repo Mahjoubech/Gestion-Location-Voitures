@@ -69,7 +69,7 @@ document.getElementById('colseedit').addEventListener('click', function() {
     window.location.href = 'clients.php'
 })
 
-document.getElementById('colseeditcar').addEventListener('click', function() {
+document.getElementById('colseedit').addEventListener('click', function() {
     document.getElementById('editformcar').classList.remove('active');
     window.location.href = 'cars.php'
 })
