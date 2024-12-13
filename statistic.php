@@ -57,7 +57,7 @@ header('Location: index.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
     <script src="/tailwind.js"></script>
 </head>
@@ -160,46 +160,38 @@ header('Location: index.php');
                     </span>
                 </li>
  </ul>
- <!---- data content ---->
- <div class="bottom-data flex flex-wrap gap-[24px] mt-[24px] w-full ">
- <div class="orders  flex-grow flex-[1_0_500px]">
- <div class="header  flex items-center gap-[16px] mb-[24px]">
-        <i class='bx bx-list-check'></i>
-        <h3 class="mr-auto text-[24px] font-semibold">List Clients</h3>
-        <i class='bx bx-filter'></i>
-        <i class='bx bx-search'></i>
-</div>
-<!--- tables---->
-<table  class="w-full border-collapse">
-                        <thead>
-                            <tr class="">
-                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">ID</th>
-                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Complet Name</th>
-                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Phone</th>
-                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Adress</th>
-                                <th class="pb-3 px-5 text-sm text-left border-b border-grey">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                           <?php
-                           foreach($client as $row){
-                            ?>
-                             <tr>
-                                <td class="py-4 px-3">
-                                    <?php echo $row['NumClient'] ?>
-                                </td>      
-                                <td class="py-4 px-3">  <?php echo $row['Nom'] ?></td>
-                                <td class="py-4 px-3">  <?php echo $row['Tele'] ?></td>
-                                <td class="py-4 px-3">  <?php echo $row['Adresse'] ?></td>
-                                <td class="py-4 px-3 edit-button" > 
-                                <a href="index.php?NumClientedit=<?php echo $row['NumClient']; ?>" class="edit-btn"><i class='bx bx-edit-alt'></i>  </a>
-                                <a href="index.php?NumClient= <?php echo $row['NumClient'] ?>"><i class="fa-solid fa-trash"></i></a></td>
-                            </tr>
-                            <?php
-                           }
-                           ?>
-                        </tbody>
-  </table>
+
+   <!-- Chart -->
+   <canvas id="statChart" class="mt-8 h-[10vh]"></canvas>
+        <script>
+            const ctx = document.getElementById('statChart').getContext('2d');
+            const statChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Clients', 'Cars', 'Contrats'],
+                    datasets: [{
+                        label: 'Total Numbers',
+                        data: [<?php echo $result['total_clients']; ?>, <?php echo $resultv['total_voitures']; ?>, <?php echo $resultc['total_contrats']; ?>],
+                        backgroundColor: ['#1976D2', '#FBC02D', '#388E3C'],
+                        borderColor: ['#388E3C', '#1976D2', '#D32F2F'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
  </div>
  </div>
  </main>
