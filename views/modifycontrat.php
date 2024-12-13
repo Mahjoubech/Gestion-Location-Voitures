@@ -1,15 +1,16 @@
 
 <?php 
 include ('./databasecnx.php');
-if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['editveh'])){
-    $numCar = $_POST['NumMatricle'];
-    $mark = $_POST['Mark'];
-    $modl = $_POST['Model'];
-    $year = $_POST['vehYear'];
-    $updt = "UPDATE `voiture` SET NumImmatriculation= '$numCar', Marque='$mark', Modele='$modl', Annee='$year' WHERE NumImmatriculation='$numCar'";
-     $reslt = mysqli_query($cnx,$updt);
+if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['contratedit'])){
+    $numcont = $_GET['Numcontratedit'];
+    $ddt = $_POST['DatDbut'];
+    $ddf = $_POST['DatFin'];
+    $dure = $_POST['Dure'];
+    $updat = "UPDATE `contrat` SET DateDebut= '$ddt', DateFin='$ddf', Duree='$dure' WHERE NumContrat='$numcont'";
+    var_dump( $updat);
+    $reslt = mysqli_query($cnx,$updat);
     
-header('Location: ../cars.php');
+     header('Location: ../contrats.php');
 }
 
 ?>
