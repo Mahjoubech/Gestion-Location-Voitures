@@ -253,16 +253,16 @@ header('Location: contrats.php');
             </div>
             <div class="form-group flex flex-col">
                 <label for="DateDebut" class="text-sm text-gray-700 mb-1">Start Date:</label>
-                <input type="date" id="DateDebut" name="DateDebut" class="p-2 border border-gray-300 rounded-lg outline-none text-sm"  required>
+                <input type="date"  name="DateDebut" class="DateDebut p-2 border border-gray-300 rounded-lg outline-none text-sm"  required>
             </div>
             <div class="form-group flex flex-col">
             <label for="DateFin" class="text-sm text-gray-700 mb-1">End Date:</label>
-            <input type="date" id="DateFin" name="DateFin" class="p-2 border border-gray-300 rounded-lg outline-none text-sm"  required>
+            <input type="date" id="DateFin" name="DateFin" class="DateFin p-2 border border-gray-300 rounded-lg outline-none text-sm"  required>
             </div>
             
             <div class="form-group flex flex-col">
                 <label for="Duree"  class="text-sm text-gray-700 mb-1">Duration:</label>
-            <input type="number" id="Duree" name="Duree" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" readonly>
+            <input type="number" id="Duree" name="Duree" class="Duree p-2 border border-gray-300 rounded-lg outline-none text-sm" readonly>
             </div>
             <button type="submit" class="submit-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out" name="Addcontrat" >Add</button>
             <button type="button" id="closeForm" class="close-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out">Close</button>
@@ -274,16 +274,16 @@ header('Location: contrats.php');
             <h2 class="text-2xl font-semibold  mb-5">Update Contrat</h2>
             <div class="form-group flex flex-col">
                 <label for="DateDebut" class="text-sm text-gray-700 mb-1">New Start Date:</label>
-                <input type="date" id="DateDebut" name="DatDbut" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" value="<?php if(isset($cos['DateDebut'])) echo $cos['DateDebut']?>" required>
+                <input type="date" id="DateDebut" name="DatDbut" class="DateDebutt p-2 border border-gray-300 rounded-lg outline-none text-sm" value="<?php if(isset($cos['DateDebut'])) echo $cos['DateDebut']?>" required>
             </div>
             <div class="form-group flex flex-col">
             <label for="DateFin" class="text-sm text-gray-700 mb-1">New End Date:</label>
-            <input type="date" id="DateFin" name="DatFin" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" value="<?php if(isset($cos['DateFin'])) echo $cos['DateFin']?>" required>
+            <input type="date" id="DateFin" name="DatFin" class="DateFint p-2 border border-gray-300 rounded-lg outline-none text-sm" value="<?php if(isset($cos['DateFin'])) echo $cos['DateFin']?>" required>
             </div>
             
             <div class="form-group flex flex-col">
                 <label for="Duree"  class="text-sm text-gray-700 mb-1">New Duration:</label>
-            <input type="number" id="Dure" name="Dure" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" value="<?php if(isset($cos['Duree'])) echo $cos['Duree']?>" required>
+            <input type="number" id="Duree" name="Dure" class="Dureet p-2 border border-gray-300 rounded-lg outline-none text-sm" value="<?php if(isset($cos['Duree'])) echo $cos['Duree']?>" readonly>
             </div>
             <button type="submit" class="submit-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out" name="contratedit" >EDIT</button>
             <button type="button" id="colseedit" class="close-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out">Close</button>
@@ -292,6 +292,7 @@ header('Location: contrats.php');
 
  
  <script src="/main.js"></script>
+ 
 </body>
 
 </html>
