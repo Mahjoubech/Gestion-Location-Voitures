@@ -2,11 +2,17 @@
 <?php
  require_once './views/databasecnx.php';
  //for display data
- //Requets
-  $sqldata= $cnx->query('SELECT * FROM client');
-  //Get values
-  $client = $sqldata->fetch_all(MYSQLI_ASSOC);
+ $clients = mysqli_query($cnx, "SELECT NumClient , Nom  FROM client");
+ $clientArray = mysqli_fetch_all($clients, MYSQLI_ASSOC);
 
+ $cars = mysqli_query($cnx, "SELECT NumImmatriculation, Marque FROM voiture");
+ $carsarray = mysqli_fetch_all($cars, MYSQLI_ASSOC);
+ //Requets
+ $sqldata = "SELECT *, client.Nom AS name FROM contrat INNER JOIN client ON contrat.NumClient = client.NumClient INNER JOIN voiture ON contrat.NumImmatriculation = voiture.NumImmatriculation ";
+   $cntracnx = mysqli_query($cnx, $sqldata);
+ 
+  //Get values
+  $contrat = $cntracnx->fetch_all(MYSQLI_ASSOC);
 //   echo'<pre>';
 //   print_r($client);
 //   echo'</pre>';
@@ -27,11 +33,11 @@ if(isset($_GET['NumClientedit'])){
     }
 }
 //delet
-if(isset($_GET['NumClient'])){
-   $NumClient = $_GET['NumClient'];
-$delet = $cnx->prepare('DELETE FROM client WHERE NumClient=?');
-$delet->execute([$NumClient]); 
-header('Location: clients.php');
+if(isset($_GET['NumClientcontrat'])){
+   $NumClientcontrat = $_GET['NumClientcontrat'];
+$delet = $cnx->prepare('DELETE FROM contrat WHERE NumContrat=?');
+$delet->execute([$NumClientcontrat]); 
+header('Location: contrats.php');
 }
 
 
@@ -122,8 +128,8 @@ header('Location: clients.php');
      </ul>
 </div>
    <a id="buttonadd" href="#" class="report h-[36px] px-[16px] rounded-[36px] bg-[#1976D2] text-[#f6f6f6] flex items-center justify-center gap-[10px] font-medium">
-   <i class="fa-solid fa-user-plus"></i>
-                    <span>Add Client</span>
+   <i class="fa-solid fa-file-circle-plus"></i>
+                    <span>Add Contrat</span>
     </a>
  </div>
  <!-- insights-->
@@ -165,7 +171,7 @@ header('Location: clients.php');
  <div class="orders  flex-grow flex-[1_0_500px]">
  <div class="header  flex items-center gap-[16px] mb-[24px]">
         <i class='bx bx-list-check'></i>
-        <h3 class="mr-auto text-[24px] font-semibold">List Clients</h3>
+        <h3 class="mr-auto text-[24px] font-semibold">List Contracts</h3>
         <i class='bx bx-filter'></i>
         <i class='bx bx-search'></i>
 </div>
@@ -174,26 +180,34 @@ header('Location: clients.php');
                         <thead>
                             <tr class="">
                                 <th class="pb-3 px-3 text-sm text-left border-b border-grey">ID</th>
-                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Complet Name</th>
-                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Phone</th>
-                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Adress</th>
+                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Nom Client</th>
+                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Registration number Car</th>
+                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">DateDebut</th>
+                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">DateFin</th>
+                                <th class="pb-3 px-3 text-sm text-left border-b border-grey">Duree</th>
+                                <th class="pb-3 px-5 text-sm text-left border-b border-grey">Print Contrat</th>
                                 <th class="pb-3 px-5 text-sm text-left border-b border-grey">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                            <?php
-                           foreach($client as $row){
+                           foreach($contrat  as $cont){
                             ?>
                              <tr>
                                 <td class="py-4 px-3">
-                                    <?php echo $row['NumClient'] ?>
+                                    <?php echo $cont['NumContrat'] ?>
                                 </td>      
-                                <td class="py-4 px-3">  <?php echo $row['Nom'] ?></td>
-                                <td class="py-4 px-3">  <?php echo $row['Tele'] ?></td>
-                                <td class="py-4 px-3">  <?php echo $row['Adresse'] ?></td>
-                                <td class="py-4 px-3 edit-button" > 
-                                <a href="clients.php?NumClientedit=<?php echo $row['NumClient']; ?>" class="edit-btn"><i class='bx bx-edit-alt'></i>  </a>
-                                <a href="clients.php?NumClient= <?php echo $row['NumClient'] ?>"><i class="fa-solid fa-trash"></i></a></td>
+                                <td class="py-4 px-3">  <?php echo $cont['name'] ?></td>
+                                <td class="py-4 px-3">  <?php echo $cont['NumImmatriculation'] ?></td>
+                                <td class="py-4 px-3">  <?php echo $cont['DateDebut'] ?></td>
+                                <td class="py-4 px-3">  <?php echo $cont['DateFin'] ?></td>
+                                <td class="py-4 px-3">  <?php echo $cont['Duree'] ?></td>
+                                <td class="py-4 px-10 edit-button"><button type="button" onclick="window.print()" class="edit-btn flex justify-around items-center gap-2 "><i class="fa-solid fa-print"></i> <P>Print</P></button></td> 
+                                <td class="py-4 px-3 edit-button"> 
+                                <a href="clients.php?NumClientedit=<?php echo $cont['NumClient']; ?>" class="edit-btn"><i class='bx bx-edit-alt'></i>  </a>
+                                <a href="contrats.php?NumClientcontrat= <?php echo $cont['NumContrat'] ?>"><i class="fa-solid fa-trash"></i></a></td>
+                               
+
                             </tr>
                             <?php
                            }
@@ -207,22 +221,54 @@ header('Location: clients.php');
  
 </div>
 
-<div id="addClientForm" class="add-client-form fixed  right-[-100%] w-full max-w-[400px] h-[450px] shadow-[2px_0_10px_rgba(0,0,0,0.1)] p-6 flex flex-col gap-5 transition-all duration-700 ease-in-out z-50 top-[166px]">
-        <form action="./views/ajoutclient.php" method="post"  class="flex flex-col gap-4">
-            <h2 class="text-2xl font-semibold  mb-5">Add Client</h2>
+<div id="addClientForm" class="add-client-form fixed  right-[-100%] w-full max-w-[400px] h-[700px] shadow-[2px_0_10px_rgba(0,0,0,0.1)] p-6 flex flex-col gap-5 transition-all duration-700 ease-in-out z-50 top-[140px]">
+        <form action="./views/ajoutcontrat.php" method="post"  class="flex flex-col gap-4">
+            <h2 class="text-2xl font-semibold  mb-5">Add Contrat</h2>
             <div class="form-group flex flex-col">
-                <label for="firstName" class="text-sm text-gray-700 mb-1">Complet Name</label>
-                <input name="namecomplet" type="text"  id="firstName" placeholder="Enter First Name" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" >
+                <label for="contratclient" class="text-sm text-gray-700 mb-1"> Nom Client </label>
+                <select name="clientcontratname" id="client"  class="p-2 border border-gray-300 rounded-lg outline-none text-sm">
+                <option value="">Select Client</option>
+                <?php
+                foreach( $clientArray as $cln){
+                ?>
+                <option value="<?php echo $cln['NumClient'] ?>">
+
+                    <?php echo $cln['Nom']?>
+                    
+                </option>
+                <?php } ?>
+                </select> 
             </div>
             <div class="form-group flex flex-col">
-                <label for="phone" class="text-sm text-gray-700 mb-1">Phone</label>
-                <input name="phone" type="text" id="phone" placeholder="Enter Phone" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" >
+           
+                <label for="registration" class="text-sm text-gray-700 mb-1">Registration number Car </label>
+                <select name="regicontrat" id="regicontrat"  class="p-2 border border-gray-300 rounded-lg outline-none text-sm">
+                <option value="">Select Number Cars</option>
+                <?php
+                foreach(  $carsarray as $car){
+                ?>
+                <option value="<?php echo $car['NumImmatriculation'] ?>">
+
+                    <?php echo $car['NumImmatriculation']?>
+                    
+                </option>
+                <?php } ?>
+                </select> 
             </div>
             <div class="form-group flex flex-col">
-                <label for="address" class="text-sm text-gray-700 mb-1">Address</label>
-                <input name="email" type="text" id="address" placeholder="Enter Address" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" >
+                <label for="DateDebut" class="text-sm text-gray-700 mb-1">Start Date:</label>
+                <input type="date" id="DateDebut" name="DateDebut" class="p-2 border border-gray-300 rounded-lg outline-none text-sm"  required>
             </div>
-            <button type="submit" class="submit-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out" name="Add" >Add</button>
+            <div class="form-group flex flex-col">
+            <label for="DateFin" class="text-sm text-gray-700 mb-1">End Date:</label>
+            <input type="date" id="DateFin" name="DateFin" class="p-2 border border-gray-300 rounded-lg outline-none text-sm"  required>
+            </div>
+            
+            <div class="form-group flex flex-col">
+                <label for="Duree"  class="text-sm text-gray-700 mb-1">Duration:</label>
+            <input type="number" id="Duree" name="Duree" class="p-2 border border-gray-300 rounded-lg outline-none text-sm" required>
+            </div>
+            <button type="submit" class="submit-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out" name="Addcontrat" >Add</button>
             <button type="button" id="closeForm" class="close-btn border-none px-4 py-2 rounded-lg cursor-pointer transition-all duration-500 ease-in-out">Close</button>
       </form>
 </div>
