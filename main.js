@@ -71,5 +71,10 @@ document.getElementById('colseedit').addEventListener('click', function() {
 
 document.getElementById('colseedit').addEventListener('click', function() {
     document.getElementById('editformcar').classList.remove('active');
+
     window.location.href = 'cars.php'
+})
+document.getElementById('colseedit').addEventListener('click', function() {
+    document.getElementById('editcontform').classList.remove('active');
+    window.location.href = 'contrats.php'
 })
